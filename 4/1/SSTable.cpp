@@ -38,10 +38,15 @@ typedef struct {
 
 3. 编写一个主函数main()，检验上述操作函数是否正确，实现以下操作：
 （1）定义一个静态查找表ST1，将下列各元素的值写入ST1，然后输出ST1的各元素的值。
-    学号key	 姓名name 	    性别sex 	     年龄age 
+    学号key	 姓名name 	   性别sex    年龄age 
+       56    Zhang          F           19
+       19 	 Wang 	        F 	        20
+       80 	 Zhou 	        F 	        19 
+        5 	 Huang 	        M	        20 
+       21 	 Zheng 	        M 	        20
        64 	 Li 	        M 	        19 
-       88 	 Liu 	         F 	        18 
-       13 	 Qian 	         F 	        19 
+       88 	 Liu 	        F 	        18 
+       13 	 Qian 	        F 	        19 
        37 	 Sun 	        M 	        20 
        75 	 Zhao 	        M 	        20 
        92 	 Chen 	        M 	        20 
