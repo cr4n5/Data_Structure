@@ -201,7 +201,7 @@ void TraversSSTable(SSTable ST) {
 int InsertDSTable_BST(BSTree &DT, RecordType e) {
     BSTree p = DT;
     BSTree s = NULL;
-    while (p) {
+    while (p) {// 查找插入位置，s指向p的前驱
         s = p;
         if (e.key == p->data.key) return FALSE;
         if (e.key < p->data.key) p = p->lchild;
@@ -232,7 +232,7 @@ void TraversDSTable_InOrder(BSTree DT) {
     }
 }
 
-// 查找
+// 查找(非递归)
 int count = 0;
 BSTree SearchDSTable_BST1(BSTree DT, KeyType key) {
 	BSTree p = DT;
@@ -245,7 +245,7 @@ BSTree SearchDSTable_BST1(BSTree DT, KeyType key) {
 	return NULL;
 }
 
-// 查找
+// 查找(递归)
 BSTree SearchDSTable_BST2(BSTree DT, KeyType key) {
 	if (!DT) return NULL;
 	count++;
@@ -276,19 +276,19 @@ int DeleteDSTable_BST(BSTree &DT, KeyType key) {
     BSTree p = DT;
     BSTree f = NULL;
     BSTree s = NULL;
-    while (p) {
+    while (p) {// 查找删除位置,f指向p的前驱
         if (key == p->data.key) break;
         f = p;
         if (key < p->data.key) p = p->lchild;
         else p = p->rchild;
     }
-    if (!p) return FALSE;
-    if (!p->lchild) {
-        if (!f) DT = p->rchild;
+    if (!p) return FALSE;// 未找到
+    if (!p->lchild) {// 无左子树
+        if (!f) DT = p->rchild;// 根结点
         else if (f->lchild == p) f->lchild = p->rchild;
         else f->rchild = p->rchild;
         free(p);
-    } else if (!p->rchild) {
+    } else if (!p->rchild) {// 无右子树
         if (!f) DT = p->lchild;
         else if (f->lchild == p) f->lchild = p->lchild;
         else f->rchild = p->lchild;
@@ -296,12 +296,12 @@ int DeleteDSTable_BST(BSTree &DT, KeyType key) {
     } else {
         s = p->lchild;
         f = p;
-        while (s->rchild) {
+        while (s->rchild) {// 找到移除p前最大的结点s
             f = s;
             s = s->rchild;
         }
         p->data = s->data;
-        if (f != p) f->rchild = s->lchild;
+        if (f != p) f->rchild = s->lchild;// s的前驱f不是p
         else f->lchild = s->lchild;
         free(s);
     }
