@@ -272,7 +272,7 @@ void OutElem(SSTable ST, int i){
 
 int main(){
 	int i,key;
-	int n=10;
+	int n=11;
 	int c,total;
 	SSTable ST1;
 
